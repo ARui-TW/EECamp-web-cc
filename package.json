@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=dev nuxt",
+    "dev": "cross-env NODE_ENV=dev nuxt",
     "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt build",
     "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt start",
     "generate": "nuxt generate",
@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "aws-amplify": "^4.3.24",
     "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.15.1",
     "json2csv": "^5.0.7",
     "nuxt": "^2.15.8",
     "taiwan-id-validator": "^1.4.1",
+    "vue-bot-ui": "^0.2.8",
     "vue-youtube": "^1.4.0",
     "vuex-persistedstate": "^4.0.0"
   },
