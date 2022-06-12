@@ -115,6 +115,9 @@ export default {
         console.log("Error", err);
       }
     }
+  },
+  mounted() {
+    Amplify.configure(awsConfig);
   }
 };
 </script>
