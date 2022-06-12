@@ -99,15 +99,14 @@ export default {
     success: false
   }),
   computed: {
-    ...mapGetters({ signupInfo: 'Web/GetSignupInfo' }),
-    baseUrl: () => process.env.baseUrl
+    ...mapGetters({ signupInfo: 'Web/GetSignupInfo' })
   },
   filters: {},
   methods: {
     filePath() {
       if (this.form.consentPath === '')
-        window.open(`${this.baseUrl}${this.signupInfo.consent}`, '_blank');
-      else window.open(`${this.baseUrl}${this.form.consentPath}`, '_blank');
+        window.open(`${this.signupInfo.consent}`, '_blank');
+      else window.open(`${this.form.consentPath}`, '_blank');
     },
     async handleSubmit() {
       this.alert = false;
