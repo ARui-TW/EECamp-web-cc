@@ -34,7 +34,12 @@
               <v-alert dense outlined type="warning" v-if="alert">
                 {{ alertMessage }}
               </v-alert>
-              <v-btn width="100%" color="primary" @click="handleAddFile">
+              <v-btn
+                width="100%"
+                color="primary"
+                @click="handleAddFile"
+                :disabled="addFileBtnDisable"
+              >
                 送出
               </v-btn>
             </v-card>
@@ -60,7 +65,7 @@
         </v-dialog>
       </template>
       <template v-slot:[`item.link`]="{ item }">
-        <v-btn icon :href="`${baseUrl}${item.path}`" target="_blank">
+        <v-btn icon :href="`${item.path}`" target="_blank">
           <v-icon small class="mr-1">mdi-link-variant</v-icon>
         </v-btn>
       </template>
@@ -72,9 +77,7 @@
     </v-data-table>
 
     <v-sheet class="d-flex align-center">
-      <v-btn :href="`${baseUrl}${consent.path}`" target="_blank">
-        家長同意書連結
-      </v-btn>
+      <v-btn :href="`${consent.path}`" target="_blank">家長同意書連結</v-btn>
       <SizeBox width="30" />
       <v-form ref="newConsent" class="fill-width">
         <v-file-input v-model="newConsent" :rules="rules.pdf" />
@@ -84,9 +87,7 @@
     </v-sheet>
 
     <v-sheet class="d-flex align-center justify-space-between">
-      <v-btn :href="`${baseUrl}${shirt.path}`" target="_blank">
-        營服尺寸參考圖
-      </v-btn>
+      <v-btn :href="`${shirt.path}`" target="_blank">營服尺寸參考圖</v-btn>
       <SizeBox width="30" />
       <v-form ref="newShirt" class="fill-width">
         <v-file-input v-model="newShirt" :rules="rules.photo" />
@@ -134,10 +135,10 @@ export default {
     },
     editIndex: -1,
     alert: false,
-    alertMessage: ''
+    alertMessage: '',
+    addFileBtnDisable: false
   }),
   computed: {
-    baseUrl: () => process.env.baseUrl,
     formTitle() {
       return this.editIndex === -1 ? '新增圖片' : '編輯圖片';
     }
@@ -156,6 +157,7 @@ export default {
     async handleAddFile() {
       this.alert = false;
       this.alertMessage = '';
+      this.addFileBtnDisable = true;
       const validateResult = await this.$refs.newFile.validate();
       if (validateResult) {
         try {
@@ -174,9 +176,11 @@ export default {
         this.newDescription = '';
         this.dialog = false;
         this.getFiles();
+        this.addFileBtnDisable = false;
       } else {
         this.alert = true;
         this.alertMessage = '資料有誤';
+        this.addFileBtnDisable = false;
       }
     },
     handleRemoveFile(item) {
