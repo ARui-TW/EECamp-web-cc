@@ -18,6 +18,13 @@
       <SizeBox width="10" />
       Facebook 粉絲專頁
     </v-btn>
+
+    <v-btn click="detect_document_text">
+    <SizeBox width="10" />
+      page test
+    </v-btn>
+
+
     <SizeBox height="20" />
     <v-card elevation="2" color="#17a2b8" class="secondary900--text pa-4">
       總籌：{{ contactInfo.convenor }}
@@ -66,6 +73,48 @@ export default {
     ...mapGetters({
       contactInfo: 'Web/GetContactInfo'
     })
+  }
+};
+</script>
+
+<script>
+  const AWS = require("aws-sdk")
+
+export default {
+  methods: {
+    async detect_document_text () {
+      const client = new AWS.Textract();
+      const s3 = new AWS.S3();
+      const params = {
+        Document: {
+          S3Object: {
+            Bucket: "textract-cc-final",
+            Name: "test123.png"
+          },
+        },
+      }
+
+      const displayBlockInfo = async (response) => {
+        try {
+            response.Blocks.forEach(block => {
+              console.log(`Block Type: ${block.BlockType}`),
+              console.log(`Text: ${block.Text}`)
+              console.log(`TextType: ${block.TextType}`)
+              console.log(`Confidence: ${block.Confidence}`)
+              console.log("-----")
+            });
+          } catch (err) {
+            console.log("Error", err);
+          }
+        }
+
+      try {
+        const res = await client.detectDocumentText(params).promise();
+        displayBlockInfo(res);
+      } catch (err) {
+        console.log("Error", err);
+      }
+    }
   }
 };
 </script>
