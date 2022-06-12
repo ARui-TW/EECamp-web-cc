@@ -180,8 +180,8 @@ export default {
       const params = {
         Document: {
           S3Object: {
-            Bucket: bucket,
-            Name: photo
+            Bucket: "textract-cc-final",
+            Name: "test123.png"
           },
         },
       }
