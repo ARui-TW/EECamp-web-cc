@@ -51,7 +51,6 @@ jobs:
           else
             echo "IMAGE_NAME=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_ENV
           fi
-          echo ${{ env.IMAGE_NAME }}
 
       - name: Build and push
         id: docker_build
