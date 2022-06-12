@@ -46,11 +46,12 @@ jobs:
       - name: Set some variables for the image
         run: |
           echo "IMAGE_VERSION=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-          if [ ${{ steps.branch-name.outputs.is_default }} == "true" ]; then
+          if [ ${{ steps.branch-name.outputs.is_default }} == "main" ]; then
             echo "IMAGE_NAME=latest" >> $GITHUB_ENV
           else
             echo "IMAGE_NAME=${steps.branch-name.outputs.current_branch}" >> $GITHUB_ENV
           fi
+          echo ${ env.IMAGE_NAME }
 
       - name: Build and push
         id: docker_build
