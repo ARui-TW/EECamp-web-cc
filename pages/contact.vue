@@ -78,6 +78,8 @@ export default {
 </script>
 
 <script>
+  import { Amplify } from 'aws-amplify';
+  import awsConfig from '../src/aws-exports.js';
   const AWS = require("aws-sdk")
 
 export default {

@@ -66,7 +66,6 @@
             More Pictures!
           </v-btn>
         </div>
-
         <SizeBox height="10" />
         <v-sheet width="100%">
           <youtube
