@@ -21,6 +21,7 @@ jobs:
         run: npm run lint
 
   docker:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
@@ -48,7 +49,7 @@ jobs:
           if [ ${{ steps.branch-name.outputs.is_default }} == "true" ]; then
             echo "IMAGE_NAME=latest" >> $GITHUB_ENV
           else
-            echo "IMAGE_NAME=${steps.branch-name.outputs.branch_name}" >> $GITHUB_ENV
+            echo "IMAGE_NAME=${steps.branch-name.outputs.current_branch}" >> $GITHUB_ENV
           fi
 
       - name: Build and push
@@ -58,7 +59,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/cc-web:${{ steps.branch-name.outputs.branch_name }}-${{ env.IMAGE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/cc-web:${{ steps.branch-name.outputs.current_branch }}-${{ env.IMAGE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/cc-web:${{ env.IMAGE_NAME }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: BUILDX_QEMU_ENV=true
