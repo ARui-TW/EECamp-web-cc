@@ -83,7 +83,7 @@
           <div class="text-Heading30">家長同意書</div>
           <v-divider class="my-4" />
           <a
-            :href="`${baseUrl}${signupInfo.consent}`"
+            :href="`${signupInfo.consent}`"
             target="_blank"
             class="text-decoration-none"
           >
@@ -123,8 +123,7 @@
 import { mapGetters } from 'vuex';
 export default {
   computed: {
-    ...mapGetters({ signupInfo: 'Web/GetSignupInfo' }),
-    baseUrl: () => process.env.baseUrl
+    ...mapGetters({ signupInfo: 'Web/GetSignupInfo' })
   }
 };
 </script>

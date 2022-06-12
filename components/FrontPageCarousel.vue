@@ -4,7 +4,7 @@
     <v-carousel-item v-for="(image, i) in images" :key="i" eager>
       <v-sheet width="100%" height="100%">
         <v-img
-          :src="`${baseUrl}${image.path}`"
+          :src="`${image.path}`"
           class="d-flex align-center"
           height="100%"
           width="100%"
@@ -49,8 +49,7 @@ export default {
     // ]
   }),
   computed: {
-    ...mapGetters({ images: 'Web/GetFrontPageImage' }),
-    baseUrl: () => process.env.baseUrl
+    ...mapGetters({ images: 'Web/GetFrontPageImage' })
   }
 };
 </script>
