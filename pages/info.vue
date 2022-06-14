@@ -146,7 +146,6 @@ import { mapGetters } from 'vuex';
 import { VueBotUI } from 'vue-bot-ui';
 import { Amplify } from 'aws-amplify';
 import { Interactions } from 'aws-amplify';
-import awsConfig from '../aws-exports';
 
 export default {
   components: {
@@ -155,7 +154,8 @@ export default {
   data: () => ({
     botOptions: {
       botAvatarSize: 40,
-      botAvatarImg: 'https://i.imgur.com/WdLpgw8.png'
+      botAvatarImg: 'https://i.imgur.com/WdLpgw8.png',
+      botTitle: 'EECamp Bot'
     },
     messages: [
       {
@@ -198,7 +198,21 @@ export default {
     }
   },
   mounted() {
-    Amplify.configure(awsConfig);
+    Amplify.configure({
+      Auth: {
+        identityPoolId: 'ap-southeast-1:2ac53486-fbdc-42e0-853b-f1bb32bf0bf6',
+        region: 'ap-southeast-1'
+      },
+      Interactions: {
+        bots: {
+          EECampBot_dev: {
+            name: 'EECampBot_dev',
+            alias: '$LATEST',
+            region: 'ap-southeast-1'
+          }
+        }
+      }
+    });
   }
 };
 </script>
