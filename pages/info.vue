@@ -144,8 +144,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { VueBotUI } from 'vue-bot-ui';
-import { Amplify } from 'aws-amplify';
-import { Interactions } from 'aws-amplify';
+import { Amplify, Interactions } from 'aws-amplify';
 
 export default {
   components: {
