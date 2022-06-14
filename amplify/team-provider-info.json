@@ -10,6 +10,23 @@
       "StackName": "amplify-cctext-dev-15100",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:047907053423:stack/amplify-cctext-dev-15100/39bd38c0-ea78-11ec-8d41-02dc1a42c52e",
       "AmplifyAppId": "d3nmer23rr4vx8"
+    },
+    "categories": {
+      "auth": {
+        "cctext4add1b4d": {}
+      },
+      "function": {
+        "S3Trigger2896ecf3": {
+          "deploymentBucketName": "amplify-cctext-dev-15100-deployment",
+          "s3Key": "amplify-builds/S3Trigger2896ecf3-5a634e6952593957706a-build.zip"
+        }
+      },
+      "storage": {
+        "cctext98757ca3": {
+          "bucketName": "textract-cc-final",
+          "region": "ap-southeast-1"
+        }
+      }
     }
   }
 }
