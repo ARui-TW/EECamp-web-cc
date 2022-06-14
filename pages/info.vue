@@ -133,7 +133,11 @@
         </div>
       </v-col>
     </v-row>
-    <VueBotUI :messages="messages" @msg-send="messageSendHandler" />
+    <VueBotUI
+      :messages="messages"
+      :options="botOptions"
+      @msg-send="messageSendHandler"
+    />
   </v-container>
 </template>
 
@@ -149,6 +153,10 @@ export default {
     VueBotUI
   },
   data: () => ({
+    botOptions: {
+      botAvatarSize: 40,
+      botAvatarImg: 'https://i.imgur.com/WdLpgw8.png'
+    },
     messages: [
       {
         agent: 'bot',
