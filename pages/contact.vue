@@ -19,8 +19,12 @@
       Facebook 粉絲專頁
     </v-btn>
 
-    <v-btn click="detect_document_text">
     <SizeBox width="10" />
+    <v-btn @click="detect_document_text" target="_blank"
+      color="#3b5998"
+      class="secondary900--text text-Global18"
+      width="100%"
+      height="50px">
       page test
     </v-btn>
 
