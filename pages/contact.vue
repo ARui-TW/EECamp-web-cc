@@ -20,14 +20,15 @@
     </v-btn>
 
     <SizeBox width="10" />
-    <v-btn @click="detect_document_text"
+    <v-btn
+      @click="detect_document_text"
       color="#3b5998"
       class="secondary900--text text-Global18"
       width="100%"
-      height="50px">
+      height="50px"
+    >
       page test
     </v-btn>
-
 
     <SizeBox height="20" />
     <v-card elevation="2" color="#17a2b8" class="secondary900--text pa-4">
@@ -74,8 +75,10 @@
 import { mapGetters } from 'vuex';
 
 import { Amplify } from 'aws-amplify';
-import { TextractClient, DetectDocumentTextCommand } from "@aws-sdk/client-textract";
-
+import {
+  TextractClient,
+  DetectDocumentTextCommand
+} from '@aws-sdk/client-textract';
 
 export default {
   computed: {
@@ -84,44 +87,43 @@ export default {
     })
   },
   methods: {
-
-    async detect_document_text () {
-      const textractClient = new TextractClient({ 
-        region: "ap-southeast-1",
-        credentials:{
-          accessKeyId: "AKIAQWJ33T5XRSIU4BSP",
-          secretAccessKey: "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"
+    async detect_document_text() {
+      const textractClient = new TextractClient({
+        region: 'ap-southeast-1',
+        credentials: {
+          accessKeyId: 'AKIAQWJ33T5XRSIU4BSP',
+          secretAccessKey: '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'
         }
-        });
+      });
       const params = {
         Document: {
           S3Object: {
-            Bucket: "textract-cc-final",
-            Name: "test222.png"
-          },
-        },
-      }
+            Bucket: 'textract-cc-final',
+            Name: 'test222.png'
+          }
+        }
+      };
 
       const displayBlockInfo = async (response) => {
         try {
-            response.Blocks.forEach(block => {
-              console.log(`Block Type: ${block.BlockType}`),
-              console.log(`Text: ${block.Text}`)
-              console.log(`TextType: ${block.TextType}`)
-              console.log(`Confidence: ${block.Confidence}`)
-              console.log("-----")
-            });
-          } catch (err) {
-            console.log("Error", err);
-          }
+          response.Blocks.forEach((block) => {
+            console.log(`Block Type: ${block.BlockType}`),
+              console.log(`Text: ${block.Text}`);
+            console.log(`TextType: ${block.TextType}`);
+            console.log(`Confidence: ${block.Confidence}`);
+            console.log('-----');
+          });
+        } catch (err) {
+          console.log('Error', err);
         }
+      };
 
       try {
         const doc = new DetectDocumentTextCommand(params);
         const res = await textractClient.send(doc);
         displayBlockInfo(res);
       } catch (err) {
-        console.log("Error", err);
+        console.log('Error', err);
       }
     }
   },
@@ -143,7 +145,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss" scoped>
 //
