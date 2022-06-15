@@ -92,9 +92,7 @@
           "Label": {
             "default": "Creating lex chatbot"
           },
-          "Parameters": [
-            "inputs"
-          ]
+          "Parameters": ["inputs"]
         }
       ]
     }
@@ -133,10 +131,7 @@
           ]
         },
         "Role": {
-          "Fn::GetAtt": [
-            "LambdaExecutionRole",
-            "Arn"
-          ]
+          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
         },
         "Environment": {
           "Variables": {
@@ -218,13 +213,9 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": [
-                  "lambda.amazonaws.com"
-                ]
+                "Service": ["lambda.amazonaws.com"]
               },
-              "Action": [
-                "sts:AssumeRole"
-              ]
+              "Action": ["sts:AssumeRole"]
             }
           ]
         },
@@ -236,9 +227,7 @@
               "Statement": [
                 {
                   "Effect": "Allow",
-                  "Action": [
-                    "lex:*"
-                  ],
+                  "Action": ["lex:*"],
                   "Resource": "*"
                 }
               ]
@@ -251,9 +240,7 @@
               "Statement": [
                 {
                   "Effect": "Allow",
-                  "Action": [
-                    "iam:*"
-                  ],
+                  "Action": ["iam:*"],
                   "Resource": "*"
                 }
               ]
@@ -266,9 +253,7 @@
               "Statement": [
                 {
                   "Effect": "Allow",
-                  "Action": [
-                    "lambda:*"
-                  ],
+                  "Action": ["lambda:*"],
                   "Resource": "*"
                 }
               ]
@@ -281,10 +266,7 @@
       "Type": "Custom::LambdaCallout",
       "Properties": {
         "ServiceToken": {
-          "Fn::GetAtt": [
-            "LambdaFunction",
-            "Arn"
-          ]
+          "Fn::GetAtt": ["LambdaFunction", "Arn"]
         },
         "region": {
           "Ref": "AWS::Region"
@@ -313,10 +295,7 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": [
-                "lex:PostContent",
-                "lex:PostText"
-              ],
+              "Action": ["lex:PostContent", "lex:PostText"],
               "Effect": "Allow",
               "Resource": [
                 {
@@ -383,10 +362,7 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": [
-                "lex:PostContent",
-                "lex:PostText"
-              ],
+              "Action": ["lex:PostContent", "lex:PostText"],
               "Effect": "Allow",
               "Resource": [
                 {
@@ -475,10 +451,7 @@
     },
     "FunctionArn": {
       "Value": {
-        "Fn::GetAtt": [
-          "LambdaFunction",
-          "Arn"
-        ]
+        "Fn::GetAtt": ["LambdaFunction", "Arn"]
       }
     }
   }
