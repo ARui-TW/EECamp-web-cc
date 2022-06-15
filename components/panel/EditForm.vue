@@ -16,7 +16,7 @@
     <v-form :model="form" ref="form" :readonly="!edit">
       <v-row>
         <v-col cols="3" class="d-flex align-center">
-          <v-img :src="`${baseUrl}${form.photoPath}`"></v-img>
+          <v-img :src="`${form.photoPath}`"></v-img>
         </v-col>
         <v-col cols="9">
           <v-row>
@@ -203,9 +203,7 @@
             required
           />
           <SizeBox width="15" />
-          <v-btn small :href="`${baseUrl}${shirtImage}`" target="_blank">
-            尺寸查詢
-          </v-btn>
+          <v-btn small :href="`${shirtImage}`" target="_blank">尺寸查詢</v-btn>
         </v-col>
         <v-col cols="12" md="6">
           <v-select
@@ -433,8 +431,7 @@ export default {
     }
   }),
   computed: {
-    ...mapGetters({ shirtImage: 'Web/GetShirtImage' }),
-    baseUrl: () => process.env.baseUrl
+    ...mapGetters({ shirtImage: 'Web/GetShirtImage' })
   },
   watch: {
     menu(val) {
