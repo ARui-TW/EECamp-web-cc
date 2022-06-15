@@ -20,12 +20,6 @@
           "deploymentBucketName": "amplify-cctext-dev-15100-deployment",
           "s3Key": "amplify-builds/S3Trigger2896ecf3-5a634e6952593957706a-build.zip"
         }
-      },
-      "storage": {
-        "cctext98757ca3": {
-          "bucketName": "textract-cc-final",
-          "region": "ap-southeast-1"
-        }
       }
     }
   }

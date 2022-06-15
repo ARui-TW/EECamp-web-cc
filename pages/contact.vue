@@ -20,7 +20,7 @@
     </v-btn>
 
     <SizeBox width="10" />
-    <v-btn @click="detect_document_text" target="_blank"
+    <v-btn @click="detect_document_text"
       color="#3b5998"
       class="secondary900--text text-Global18"
       width="100%"
@@ -72,30 +72,32 @@
 
 <script>
 import { mapGetters } from 'vuex';
+
+import { Amplify } from 'aws-amplify';
+import { TextractClient, DetectDocumentTextCommand } from "@aws-sdk/client-textract";
+
+
 export default {
   computed: {
     ...mapGetters({
       contactInfo: 'Web/GetContactInfo'
     })
-  }
-};
-</script>
-
-<script>
-  import { Amplify } from 'aws-amplify';
-  import awsConfig from '../src/aws-exports.js';
-  const AWS = require("aws-sdk")
-
-export default {
+  },
   methods: {
+
     async detect_document_text () {
-      const client = new AWS.Textract();
-      const s3 = new AWS.S3();
+      const textractClient = new TextractClient({ 
+        region: "ap-southeast-1",
+        credentials:{
+          accessKeyId: "AKIAQWJ33T5XRSIU4BSP",
+          secretAccessKey: "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"
+        }
+        });
       const params = {
         Document: {
           S3Object: {
             Bucket: "textract-cc-final",
-            Name: "test123.png"
+            Name: "test222.png"
           },
         },
       }
@@ -115,7 +117,8 @@ export default {
         }
 
       try {
-        const res = await client.detectDocumentText(params).promise();
+        const doc = new DetectDocumentTextCommand(params);
+        const res = await textractClient.send(doc);
         displayBlockInfo(res);
       } catch (err) {
         console.log("Error", err);
@@ -123,10 +126,24 @@ export default {
     }
   },
   mounted() {
-    Amplify.configure(awsConfig);
+    Amplify.configure({
+      Auth: {
+        identityPoolId: 'ap-southeast-1:3a95d619-85f6-4774-8fbb-ea85a83d972c', // (required) - Amazon Cognito Identity Pool ID
+        region: 'ap-southeast-1', // (required) - Amazon Cognito Region
+        userPoolId: 'ap-southeast-1_zEY3izLtf', // (optional) - Amazon Cognito User Pool ID
+        userPoolWebClientId: '1d419huvu44gm5vgkp9ue4v997' // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
+      },
+      Storage: {
+        AWSS3: {
+          bucket: 'textract-cc-final', // (required) -  Amazon S3 bucket name
+          region: 'ap-southeast-1' // (optional) -  Amazon service region
+        }
+      }
+    });
   }
 };
 </script>
+
 
 <style lang="scss" scoped>
 //

@@ -32,12 +32,5 @@
       "build": true
     }
   },
-  "storage": {
-    "cctext98757ca3": {
-      "service": "S3",
-      "serviceType": "imported",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
-    }
-  }
+  "storage": {}
 }
