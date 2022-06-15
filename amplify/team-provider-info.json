@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-eecampwebcc-dev-03024-authRole",
+      "UnauthRoleArn": "arn:aws:iam::411756489884:role/amplify-eecampwebcc-dev-03024-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::411756489884:role/amplify-eecampwebcc-dev-03024-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-eecampwebcc-dev-03024-deployment",
+      "UnauthRoleName": "amplify-eecampwebcc-dev-03024-unauthRole",
+      "StackName": "amplify-eecampwebcc-dev-03024",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:411756489884:stack/amplify-eecampwebcc-dev-03024/76d41e70-ecc8-11ec-97fb-0ee046a04f85",
+      "AmplifyAppId": "d29s5hphdb30v5"
+    }
+  }
+}
