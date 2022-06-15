@@ -1,24 +1,24 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-eecampwebcc-dev-32619-authRole",
-      "UnauthRoleArn": "arn:aws:iam::316773698997:role/amplify-eecampwebcc-dev-32619-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::316773698997:role/amplify-eecampwebcc-dev-32619-authRole",
-      "Region": "ap-southeast-1",
-      "DeploymentBucketName": "amplify-eecampwebcc-dev-32619-deployment",
-      "UnauthRoleName": "amplify-eecampwebcc-dev-32619-unauthRole",
-      "StackName": "amplify-eecampwebcc-dev-32619",
-      "StackId": "arn:aws:cloudformation:ap-southeast-1:316773698997:stack/amplify-eecampwebcc-dev-32619/604375c0-e9bc-11ec-83a9-02bc711c4042",
-      "AmplifyAppId": "d18snzlnbkkjw0"
+      "AuthRoleName": "amplify-eecampwebcc-dev-03024-authRole",
+      "UnauthRoleArn": "arn:aws:iam::411756489884:role/amplify-eecampwebcc-dev-03024-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::411756489884:role/amplify-eecampwebcc-dev-03024-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-eecampwebcc-dev-03024-deployment",
+      "UnauthRoleName": "amplify-eecampwebcc-dev-03024-unauthRole",
+      "StackName": "amplify-eecampwebcc-dev-03024",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:411756489884:stack/amplify-eecampwebcc-dev-03024/76d41e70-ecc8-11ec-97fb-0ee046a04f85",
+      "AmplifyAppId": "d29s5hphdb30v5"
     },
     "categories": {
       "auth": {
-        "undefined": {}
+        "eecampwebcc0d72dc93": {}
       },
-      "interactions": {
-        "lex3b60f1ea": {
-          "deploymentBucketName": "amplify-eecampwebcc-dev-32619-deployment",
-          "s3Key": "amplify-builds/lex3b60f1ea-717851644f6c30526a71-build.zip"
+      "storage": {
+        "eecampwebcc7cd7409d": {
+          "bucketName": "cc-server-student-image",
+          "region": "ap-east-1"
         }
       }
     }

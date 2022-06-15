@@ -1,27 +1,30 @@
 {
   "auth": {
-    "eecampwebcc": {
+    "eecampwebcc0d72dc93": {
       "service": "Cognito",
-      "serviceType": "managed",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
+      "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
         "usernameAttributes": [],
-        "signupAttributes": [],
+        "signupAttributes": ["EMAIL"],
         "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
-        "mfaTypes": [],
-        "verificationMechanisms": []
+        "mfaConfiguration": "OFF",
+        "mfaTypes": ["SMS"],
+        "verificationMechanisms": ["EMAIL"]
       }
     }
   },
-  "interactions": {
-    "lex3b60f1ea": {
-      "service": "Lex",
+  "storage": {
+    "eecampwebcc7cd7409d": {
+      "service": "S3",
+      "serviceType": "imported",
       "providerPlugin": "awscloudformation",
-      "build": true
+      "dependsOn": []
     }
   }
 }

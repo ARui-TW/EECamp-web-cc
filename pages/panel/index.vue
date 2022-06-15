@@ -10,18 +10,18 @@
       {{ alertData.text }}
     </v-alert>
     <PanelEditForm :form="user" :editable="true" />
+    <SizeBox height="20" />
     <div
       v-if="user.status === 'Paid' || user.status === 'Unpaid'"
-      class="fill-width"
+      class="fill-width justify-center d-flex"
     >
-      <SizeBox height="20" />
       <PanelPaidInfo :form="user" />
     </div>
+    <SizeBox height="20" />
     <div
       v-if="user.status === 'Paid' || user.status === 'Unpaid'"
-      class="fill-width"
+      class="fill-width justify-center d-flex"
     >
-      <SizeBox height="20" />
       <PanelTransMethod :form="user" />
     </div>
     <SizeBox height="20" />

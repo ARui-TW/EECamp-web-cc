@@ -133,36 +133,38 @@
         </div>
       </v-col>
     </v-row>
-    <VueBotUI
-      :messages="messages"
-      :options="botOptions"
-      @msg-send="messageSendHandler"
-    />
+    <div id="chatbot" v-if="showChatbot">
+      <amplify-chatbot
+        bot-name="EECampBot_dev"
+        bot-title="EECampBot"
+        welcome-message="Hello, how can I help you?"
+      />
+    </div>
+    <v-btn
+      id="chatbotBtn"
+      v-on:click="showChatbot = !showChatbot"
+      class="mx-2"
+      fab
+      dark
+      large
+      color="purple"
+    >
+      <v-icon dark>mdi-android</v-icon>
+    </v-btn>
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import { VueBotUI } from 'vue-bot-ui';
-import { Amplify, Interactions } from 'aws-amplify';
+import {
+  applyPolyfills,
+  defineCustomElements
+} from '@aws-amplify/ui-components/loader';
+import { Amplify } from 'aws-amplify';
 
 export default {
-  components: {
-    VueBotUI
-  },
   data: () => ({
-    botOptions: {
-      botAvatarSize: 40,
-      botAvatarImg: 'https://i.imgur.com/WdLpgw8.png',
-      botTitle: 'EECamp Bot'
-    },
-    messages: [
-      {
-        agent: 'bot',
-        type: 'text',
-        text: 'Hello. How can I help you'
-      }
-    ],
+    showChatbot: false,
     playerVars: {
       autoplay: 1,
       mute: 1
@@ -181,22 +183,10 @@ export default {
       campInfo: 'Web/GetCampInfo'
     })
   },
-  methods: {
-    async messageSendHandler(message) {
-      this.messages.push({
-        agent: 'user',
-        type: 'text',
-        text: message.text
-      });
-      const response = await Interactions.send('EECampBot_dev', message.text);
-      this.messages.push({
-        agent: 'bot',
-        type: 'text',
-        text: response.message
-      });
-    }
-  },
   mounted() {
+    applyPolyfills().then(() => {
+      defineCustomElements(window);
+    });
     Amplify.configure({
       Auth: {
         identityPoolId: 'ap-southeast-1:2ac53486-fbdc-42e0-853b-f1bb32bf0bf6',
@@ -217,5 +207,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//
+#chatbotBtn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+#chatbot {
+  position: fixed;
+  right: 80px;
+  bottom: 80px;
+  z-index: 9999;
+  background-color: #fff;
+}
+
+// amplify-bot {
+//   --bot-background-color: #fff;
+// }
 </style>
