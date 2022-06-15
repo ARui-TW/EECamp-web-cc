@@ -13,6 +13,7 @@
     "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix"
   },
   "dependencies": {
+    "@aws-amplify/ui-components": "^1.9.6",
     "@aws-sdk/client-textract": "^3.109.0",
     "@aws-sdk/credential-providers": "^3.109.0",
     "@nuxtjs/axios": "^5.13.6",
