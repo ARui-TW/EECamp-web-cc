@@ -133,13 +133,36 @@
         </div>
       </v-col>
     </v-row>
+    <VueBotUI
+      :messages="messages"
+      :options="botOptions"
+      @msg-send="messageSendHandler"
+    />
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import { VueBotUI } from 'vue-bot-ui';
+import { Amplify, Interactions } from 'aws-amplify';
+
 export default {
+  components: {
+    VueBotUI
+  },
   data: () => ({
+    botOptions: {
+      botAvatarSize: 40,
+      botAvatarImg: 'https://i.imgur.com/WdLpgw8.png',
+      botTitle: 'EECamp Bot'
+    },
+    messages: [
+      {
+        agent: 'bot',
+        type: 'text',
+        text: 'Hello. How can I help you'
+      }
+    ],
     playerVars: {
       autoplay: 1,
       mute: 1
@@ -157,6 +180,38 @@ export default {
     ...mapGetters({
       campInfo: 'Web/GetCampInfo'
     })
+  },
+  methods: {
+    async messageSendHandler(message) {
+      this.messages.push({
+        agent: 'user',
+        type: 'text',
+        text: message.text
+      });
+      const response = await Interactions.send('EECampBot_dev', message.text);
+      this.messages.push({
+        agent: 'bot',
+        type: 'text',
+        text: response.message
+      });
+    }
+  },
+  mounted() {
+    Amplify.configure({
+      Auth: {
+        identityPoolId: 'ap-southeast-1:2ac53486-fbdc-42e0-853b-f1bb32bf0bf6',
+        region: 'ap-southeast-1'
+      },
+      Interactions: {
+        bots: {
+          EECampBot_dev: {
+            name: 'EECampBot_dev',
+            alias: '$LATEST',
+            region: 'ap-southeast-1'
+          }
+        }
+      }
+    });
   }
 };
 </script>

@@ -188,7 +188,7 @@
               required
             />
             <SizeBox width="15" />
-            <v-btn small :href="`${baseUrl}${shirtImage}`" target="_blank">
+            <v-btn small :href="`${shirtImage}`" target="_blank">
               尺寸查詢
             </v-btn>
           </v-col>
@@ -407,8 +407,7 @@ export default {
     }
   }),
   computed: {
-    ...mapGetters({ shirtImage: 'Web/GetShirtImage' }),
-    baseUrl: () => process.env.baseUrl
+    ...mapGetters({ shirtImage: 'Web/GetShirtImage' })
   },
   watch: {
     menu(val) {

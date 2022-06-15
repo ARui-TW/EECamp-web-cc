@@ -1,6 +1,6 @@
 services:
   server:
-    build: .
+    image: arui1213/cc-web
     ports:
       - "3002:3000"
     restart: unless-stopped
