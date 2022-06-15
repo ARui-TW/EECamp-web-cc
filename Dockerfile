@@ -4,11 +4,11 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci
+RUN npm i
 RUN npm run build
 
 RUN rm -rf node_modules && \
-  NODE_ENV=production npm ci --production
+  NODE_ENV=production npm i --production
 
 FROM node:17-alpine
 

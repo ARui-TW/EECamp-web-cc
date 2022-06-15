@@ -1,0 +1,23 @@
+{
+  "resourceName": "lex3b60f1ea",
+  "botName": "EECampBot",
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "a",
+          "type": "AMAZON.Actor",
+          "prompt": "c",
+          "required": false,
+          "customType": false
+        }
+      ],
+      "utterances": ["book"],
+      "intentName": "when",
+      "newSlotTypes": []
+    }
+  ],
+  "outputVoice": false,
+  "sessionTimeout": 5,
+  "coppa": false
+}

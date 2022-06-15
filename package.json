@@ -7,18 +7,20 @@
     "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt build",
     "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt start",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .eslintignore .",
     "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js && npm run lint:prettier",
     "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "aws-amplify": "^4.3.24",
     "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.15.1",
     "json2csv": "^5.0.7",
     "nuxt": "^2.15.8",
     "taiwan-id-validator": "^1.4.1",
+    "vue-bot-ui": "^0.2.8",
     "vue-youtube": "^1.4.0",
     "vuex-persistedstate": "^4.0.0"
   },
