@@ -10,6 +10,17 @@
       "StackName": "amplify-eecampwebcc-dev-03024",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:411756489884:stack/amplify-eecampwebcc-dev-03024/76d41e70-ecc8-11ec-97fb-0ee046a04f85",
       "AmplifyAppId": "d29s5hphdb30v5"
+    },
+    "categories": {
+      "auth": {
+        "eecampwebcc0d72dc93": {}
+      },
+      "storage": {
+        "eecampwebcc7cd7409d": {
+          "bucketName": "cc-server-student-image",
+          "region": "ap-east-1"
+        }
+      }
     }
   }
 }
